@@ -28,7 +28,7 @@ public class OfficeQuest {
 			outcome = 2;
 		}
 		else {
-			outcome = probability;
+			outcome = rand.nextInt(60) + 1;
 		}
 		return outcome;
 	}
@@ -36,12 +36,12 @@ public class OfficeQuest {
 	public static void main(String[] args){
 		
 		int turn = 0;
-		int pages;
+		int pages = 0;
 		int delivery;
 		int totalMinutes = 480;
 		int hours;
 		Scanner input = new Scanner(System.in);
-		char tapeOrStaple;
+		char tapeOrStaple = 't';
 
 		TapeDispenser tape = new TapeDispenser();
 		Stapler staples = new Stapler();
@@ -54,42 +54,42 @@ public class OfficeQuest {
 
 			// Generate random number of pages to collate
 			delivery = paperStaplesTape();
-			if(delivery == 1){
-				tape.refillTape();
-				System.out.println("The delivery person came by with more tape!");
-				totalMinutes -= 20;
-				time(totalMinutes);
+			switch(delivery){
+				case 1:
+					tape.refillTape();
+					System.out.println("The delivery person came by with more tape!");
+					totalMinutes -= 20;
+					time(totalMinutes);
+					break;
+				case 2:
+					staples.refillStaples();
+					System.out.println("The delivery person came by with more staples!");
+					totalMinutes -= 20;
+					time(totalMinutes);
+					break;
+				default:
+					pages = delivery;
+					System.out.println("The delivery person dropped off " + pages + " pages to collate!");
+					System.out.print("[T]ape or [S]taple > ");
+					tapeOrStaple = input.next().charAt(0);
+					tapeOrStaple = Character.toLowerCase(tapeOrStaple);
 			}
-			else if(delivery == 2){
-				staples.refillStaples();
-				System.out.println("The delivery person came by with more staples!");
-				totalMinutes -= 20;
-				time(totalMinutes);
+			if(tapeOrStaple == 't'){
+				tape.useTape(pages);
 			}
-			else if(delivery > 2){
-				pages = delivery;
-				System.out.println("The delivery person dropped off " + pages + " pages to collate!");
-				System.out.print("[T]ape or [S]taple > ");
-				tapeOrStaple = input.next().charAt(0);
-				tapeOrStaple = Character.toLowerCase(tapeOrStaple);
-				if(tapeOrStaple == 't'){
-					tape.useTape(pages);
-				}
-				else if(tapeOrStaple == 's'){
-					staples.useStapler(pages);
-				}
-				else{
-					do{
-						System.out.print("[T]ape or [S]taple > ");
-						tapeOrStaple = input.next().charAt(0);
-						tapeOrStaple = Character.toLowerCase(tapeOrStaple);
-					}while(tapeOrStaple != 's' && tapeOrStaple != 't');
-				}
-				totalMinutes -= 20;
-				time(totalMinutes);
+			else if(tapeOrStaple == 's'){
+				staples.useStapler(pages);
 			}
+			else{
+				do{
+					System.out.print("[T]ape or [S]taple > ");
+					tapeOrStaple = input.next().charAt(0);
+					tapeOrStaple = Character.toLowerCase(tapeOrStaple);
+				}while(tapeOrStaple != 's' && tapeOrStaple != 't');
+			}
+			totalMinutes -= 20;
+			time(totalMinutes);
 		}
-
 	}
 
 }
