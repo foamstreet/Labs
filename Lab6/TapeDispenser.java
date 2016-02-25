@@ -11,16 +11,16 @@ public class TapeDispenser
 	public String inchesOfTapeStatus()
 	{
 		String status = "";
-		if(inchesOfTape > 45){
+		if(inchesOfTape > 45.0){
 			status = "full";
 		}
-		else if(inchesOfTape >= 35 && inchesOfTape < 45){
+		else if(inchesOfTape >= 35.0 && inchesOfTape < 45.0){
 			status = "almost full";
 		}
-		else if(inchesOfTape >= 15 && inchesOfTape < 35){
+		else if(inchesOfTape >= 15.0 && inchesOfTape < 35.0){
 			status = "halfway full";
 		}
-		else if(inchesOfTape > 0 && inchesOfTape < 15){
+		else if(inchesOfTape > 0.0 && inchesOfTape < 15.0){
 			status = "almost empty";
 		}
 		else if(inchesOfTape == 0){
