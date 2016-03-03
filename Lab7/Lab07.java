@@ -27,12 +27,29 @@ public class Lab07 {
 		int temp;
 		char[] universe;
 		String theString = "";
+		int babies = 0;
+		int children = 0;
+		int adults = 0;
 
 		File universeFile = new File("universe.txt");
 		if(universeFile.exists()){
 		 	inputFile = new Scanner(universeFile);
 		 	theString = inputFile.nextLine();
 		 	universe = theString.toCharArray();
+		 	for(int i = 0; i < universe.length; i++){
+		 		if(universe[i] == '0'){
+		 			babies++;
+		 		}
+		 		else if(universe[i] == '1'){
+		 			children++;
+		 		}
+		 		else if(universe[i] == '2'){
+		 			adults++;
+		 		}
+		 	}
+		 	System.out.println("Babies: " + babies);
+		 	System.out.println("Children: " + children);
+		 	System.out.println("Adults: " + adults);
 		}
 		else {
 			System.out.print("How big of a world? > ");
