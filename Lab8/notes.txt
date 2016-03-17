@@ -1,0 +1,28 @@
+Martin - array[5]
+Pangloss - array[5]
+
+Each season 0 to 4 rutabagas will grow 
+(random num 0 - 4 to be picked each time)
+
+Rutabagas start growing at index 0. If there is already a rutabaga growing at an index,
+it will stay there and the new rutabaga will grow at the next index.
+
+Ex:	Season 1: 1 new rutabaga
+	[1, ***, ***, ***, ***]
+
+	Season 2: 2 new rutabaga
+	[1, 2, 2, ***, ***]
+
+	etc..
+
+Each rutabaga will be represented by the number of rutabagas grown that season.
+*** - represents no rutabagas growing yet
+
+Eventually there will need to be more spaces for rutabagas to grow than will fit in the garden.
+At that point, the garden array will need to be resized.
+
+Pangloss will double his array is it needs to be resized.
+Martin will only increase the size of his array by 2, even if there are more than 2 rutabagas that season.
+
+Simulate 40 seasons. During each resizing, indicate the new size of the array. 
+There maybe multiple resizings per season.
